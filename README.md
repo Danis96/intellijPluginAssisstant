@@ -3,7 +3,7 @@
 An IntelliJ IDEA plugin that adds a right-side tool window to chat with an AI assistant. It supports secure access-token storage, token verification against a backend, and a simple chat API integration.
 
 - **Plugin ID**: `org.example.aiassistant`
-- **Tool Window**: "Genie AI Assistant"
+- **Tool Window**: "AI Assistant"
 - **Settings Page**: "AI Assistant"
 - **Minimum IntelliJ build**: `242` (IDEA 2024.2)
 - **Kotlin**: `2.2.0`
