@@ -4,10 +4,48 @@
     <vendor email="you@example.com">SQA Consulting</vendor>
 
     <description><![CDATA[
-      AI Assistant for IntelliJ IDEA.<br/>
-      - Chat with an AI assistant inside the IDE.<br/>
-      - Requires an access token. Configure in Settings → AI Assistant.<br/>
-      - Sends prompts securely to your backend with bearer auth.
+      Genie AI Assistant is a sophisticated IntelliJ IDEA plugin that integrates AI-powered coding assistance directly into the IDE through a dedicated tool window.<br/>
+      Built with Kotlin, it provides developers with an intelligent companion for coding tasks, code explanations, and development guidance.<br/><br/>
+      
+      <b>Key Features:</b><br/><br/>
+      
+      🔐 <b>Secure Authentication</b><br/>
+      • Token-based authentication with bearer authorization<br/>
+      • OS-level secure storage using IntelliJ's PasswordSafe<br/>
+      • Async token validation against configurable endpoints<br/><br/>
+      
+      🎨 <b>Modern User Interface</b><br/>
+      • Professional tool window with distinguished prompt input area<br/>
+      • Adaptive light/dark theme support with custom color schemes<br/>
+      • Real-time character counting and visual feedback<br/>
+      • Interactive buttons with hover effects and modern styling<br/><br/>
+      
+      💬 <b>Smart Chat Experience</b><br/>
+      • Timestamped conversation history with emoji categorization<br/>
+      • Placeholder text guidance and keyboard shortcuts<br/>
+      • Progress indicators and loading states for better UX<br/>
+      • Message formatting with user/assistant/error/info types<br/><br/>
+      
+      ⚙️ <b>Seamless IDE Integration</b><br/>
+      • Right-side tool window that cannot be closed<br/>
+      • Settings panel integration in IDE preferences<br/>
+      • Tools menu action for quick access<br/>
+      • Balloon notifications for user alerts and warnings<br/><br/>
+      
+      🌐 <b>Network Communication</b><br/>
+      • Modern HTTP client for API communication<br/>
+      • JSON payload handling with injection prevention<br/>
+      • Configurable endpoints for authentication and chat APIs<br/>
+      • Comprehensive error handling and fallback mechanisms<br/><br/>
+      
+      🚀 <b>Performance & Architecture</b><br/>
+      • Asynchronous operations to prevent UI blocking<br/>
+      • Project-scoped instances with proper lifecycle management<br/>
+      • DumbAware implementation for IDE indexing compatibility<br/>
+      • Memory-efficient with proper resource disposal<br/><br/>
+      
+      The plugin requires Java 17+ and targets IntelliJ IDEA 2024.2+, making it suitable for modern development environments.<br/>
+      It's designed for organizations wanting to integrate custom AI backends into their development workflow with enterprise-grade security and professional UI standards.
     ]]></description>
 
     <change-notes><![CDATA[
@@ -27,7 +65,7 @@
                     canCloseContent="false"/>
         <applicationConfigurable instance="com.example.aiassistant.settings.AIAssistantConfigurable"
                                  id="ai.assistant.settings"
-                                 displayName="AI Assistant"/>
+                                 displayName="Genie AI Assistant"/>
         <notificationGroup id="Genie AI Assistant Notifications" displayType="BALLOON" isLogByDefault="true"/>
     </extensions>
 
@@ -40,6 +78,13 @@
                 icon="/icons/ai.png"
                 description="Open the Genie AI Assistant tool window">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AIAssistant.CheckCodeInAssistant"
+        class="com.example.aiassistant.actions.CheckCodeInAssistantAction"
+        text="Check Code in Genie Assistant"
+        description="Send selected code to Genie AI Assistant with a prepared prompt"
+        icon="/icons/ai.png">
+	           <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>

@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.2.0"
-    id("org.jetbrains.intellij") version "1.17.4"
+    kotlin("jvm") version "2.0.0"
+    id("org.jetbrains.intellij") version "1.17.2"
 }
 
 group = "org.example"
@@ -12,25 +12,35 @@ repositories {
 
 intellij {
     type.set("IC")
-    version.set("2024.2")
+    version.set("2024.1.4") // Stable version
     plugins.set(listOf("java"))
 }
 
 dependencies {
     testImplementation(kotlin("test"))
-    // implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.9.0")
 }
 
 tasks {
     patchPluginXml {
-        sinceBuild.set("242")
+        sinceBuild.set("241")
+        untilBuild.set("242.*")
         changeNotes.set(
             """
             Initial AI Assistant with access token verification.
             """.trimIndent()
         )
     }
+    
     runIde {
+        autoReloadPlugins.set(true)
+        jvmArgs = listOf(
+            "-Xmx1024m",
+            "-XX:ReservedCodeCacheSize=256m"
+        )
+    }
+
+    buildPlugin {
+        archiveFileName.set("${project.name}-${project.version}-dev.zip")
     }
 }
 

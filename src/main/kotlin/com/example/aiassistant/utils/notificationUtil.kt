@@ -9,10 +9,9 @@ import com.intellij.openapi.project.Project
 
 
 fun notifyWarn(project: Project, title: String, content: String) {
-    val groupId: String = "Genie AI Assistant Notifications"
-    val group: NotificationGroup? = NotificationGroupManager.getInstance().getNotificationGroup(groupId)
+    val group: NotificationGroup? = NotificationGroupManager.getInstance().getNotificationGroup(TextHelper.Notifications.GROUP_ID)
     val notification: Notification =
         group?.createNotification(title, content, NotificationType.WARNING)
-            ?: Notification(groupId, title, content, NotificationType.WARNING)
+            ?: Notification(TextHelper.Notifications.GROUP_ID, title, content, NotificationType.WARNING)
     Notifications.Bus.notify(notification, project)
 }
