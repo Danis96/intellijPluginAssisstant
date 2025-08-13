@@ -1,0 +1,45 @@
+<idea-plugin>
+    <id>org.example.aiassistant</id>
+    <name>Genie AI Assistant</name>
+    <vendor email="you@example.com">SQA Consulting</vendor>
+
+    <description><![CDATA[
+      AI Assistant for IntelliJ IDEA.<br/>
+      - Chat with an AI assistant inside the IDE.<br/>
+      - Requires an access token. Configure in Settings → AI Assistant.<br/>
+      - Sends prompts securely to your backend with bearer auth.
+    ]]></description>
+
+    <change-notes><![CDATA[
+      1.0.0:
+      - Initial release with Tool Window, secure token storage, and token verification.
+    ]]></change-notes>
+
+    <idea-version since-build="242"/>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Genie AI Assistant"
+                    anchor="right"
+                    factoryClass="com.example.aiassistant.toolwindow.AIAssistantToolWindowFactory"
+                    icon="/icons/ai.png"
+                    canCloseContent="false"/>
+        <applicationConfigurable instance="com.example.aiassistant.settings.AIAssistantConfigurable"
+                                 id="ai.assistant.settings"
+                                 displayName="AI Assistant"/>
+        <notificationGroup id="Genie AI Assistant Notifications" displayType="BALLOON" isLogByDefault="true"/>
+    </extensions>
+
+    
+
+    <actions>
+        <action id="AIAssistant.OpenToolWindow"
+                class="com.example.aiassistant.actions.OpenAIAssistantAction"
+                text="Open Genie AI Assistant"
+                icon="/icons/ai.png"
+                description="Open the Genie AI Assistant tool window">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
